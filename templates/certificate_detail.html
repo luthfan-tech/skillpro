@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block title %}Certificate - {{ course.title if
+course else 'SkillPro' }}{% endblock %} {% block extra_css %}
+<style>
+  /* Printable Area Formatting */
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #printable-certificate,
+    #printable-certificate * {
+      visibility: visible;
+    }
+    #printable-certificate {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      border: 8px solid #0d6efd !important;
+      box-shadow: none !important;
+    }
+    .no-print {
+      display: none !important;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container my-4">
+  <!-- Actions bar (hidden during printing) -->
+  <div class="d-flex justify-content-between align-items-center no-print mb-4">
+    <a
+      href="{{ url_for('student_dashboard') }}"
+      class="btn btn-outline-secondary btn-sm"
+      >&larr; Back to Dashboard</a
+    >
+    <button onclick="window.print()" class="btn btn-success">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- Certificate Box -->
+  <div
+    id="printable-certificate"
+    class="p-5 text-center border border-5 border-primary bg-white shadow-lg rounded position-relative"
+    style="min-height: 500px"
+  >
+    <div class="py-4">
+      <div class="mb-3">
+        <span class="fs-1">🏆</span>
+        <h1
+          class="display-5 fw-bold text-dark text-uppercase tracking-wide mt-2"
+        >
+          Certificate of Completion
+        </h1>
+        <p class="text-primary fw-bold fs-5">SkillPro Learning Platform</p>
+      </div>
+
+      <hr class="w-50 mx-auto my-4 text-muted" />
+
+      <p class="fs-5 text-muted mb-2">This is proudly presented to</p>
+      <h2 class="display-6 fw-bold text-dark my-3">
+        {{ certificate.user.name if certificate and certificate.user else
+        current_user.name }}
+      </h2>
+
+      <p class="fs-5 text-muted mb-2">for successfully completing the course</p>
+      <h3 class="fw-bold text-primary mb-4">
+        {{ course.title if course else 'Course Mastery Program' }}
+      </h3>
+
+      <div
+        class="row justify-content-between align-items-end mt-5 pt-4 text-muted small border-top mx-3"
+      >
+        <div class="col-6 text-start">
+          <p class="mb-1">
+            <strong>Issued Date:</strong> {{ certificate.issued_at.strftime('%B
+            %d, %Y') if certificate and certificate.issued_at else 'July 27,
+            2026' }}
+          </p>
+          <p class="mb-0">
+            <strong>Verification Code:</strong>
+            <code
+              >{{ certificate.certificate_code if certificate else
+              'CERT-SKILLPRO-2026' }}</code
+            >
+          </p>
+        </div>
+        <div class="col-6 text-end">
+          <div class="fw-bold border-bottom pb-1 d-inline-block px-4">
+            SkillPro Academic Board
+          </div>
+          <p class="mb-0 mt-1 text-muted">Authorized Signature</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

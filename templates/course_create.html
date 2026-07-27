@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Course | SkillPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6"
+  >
+    <div
+      class="w-full max-w-xl bg-slate-800/80 border border-slate-700 rounded-2xl p-8 shadow-2xl backdrop-blur-md"
+    >
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-2xl font-bold text-white">Create New Course</h1>
+          <p class="text-slate-400 text-sm mt-1">
+            Set up the initial details for your new learning path.
+          </p>
+        </div>
+        <a
+          href="/dashboard/instructor"
+          class="text-xs text-indigo-400 hover:underline"
+          >← Dashboard</a
+        >
+      </div>
+
+      <form
+        action="{{ url_for('create_course') }}"
+        method="POST"
+        class="space-y-6"
+      >
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-2"
+            >Course Title</label
+          >
+          <input
+            type="text"
+            name="title"
+            required
+            placeholder="e.g., Full-Stack Web Development with Flask"
+            class="w-full px-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-2"
+            >Description</label
+          >
+          <textarea
+            name="description"
+            rows="4"
+            placeholder="Briefly explain what students will learn in this course..."
+            class="w-full px-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+          ></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-2"
+              >Category</label
+            >
+            <select
+              name="category"
+              class="w-full px-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-100 focus:outline-none focus:border-indigo-500 transition"
+            >
+              <option value="Development">Development</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Design">Design</option>
+              <option value="Business">Business</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-2"
+              >Difficulty</label
+            >
+            <select
+              name="difficulty"
+              class="w-full px-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-slate-100 focus:outline-none focus:border-indigo-500 transition"
+            >
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition shadow-lg shadow-indigo-600/20"
+        >
+          Continue to Curriculum Builder →
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

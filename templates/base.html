@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}SkillPro | Modern LMS{% endblock %}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content {
+        flex: 1;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+    </style>
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a
+          class="navbar-brand text-primary"
+          href="{{ url_for('index') if 'index' in url_for.__globals__ else '/' }}"
+        >
+          🎓 SkillPro
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('catalog') }}">Catalog</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="{{ url_for('leaderboard') if 'leaderboard' in url_for.__globals__ else '#' }}"
+                >Leaderboard</a
+              >
+            </li>
+          </ul>
+
+          <!-- Right User Navigation -->
+          <ul class="navbar-nav ms-auto align-items-center">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item me-2">
+              {% if current_user.role == 'instructor' %}
+              <a
+                class="btn btn-outline-light btn-sm"
+                href="{{ url_for('instructor_dashboard') }}"
+                >Instructor Dashboard</a
+              >
+              {% else %}
+              <a
+                class="btn btn-outline-light btn-sm"
+                href="{{ url_for('student_dashboard') }}"
+                >My Learning</a
+              >
+              {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="{{ url_for('logout') }}"
+                >Logout</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-primary btn-sm ms-2"
+                href="{{ url_for('register') }}"
+                >Register</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash / Toast Notifications -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div
+      class="toast-container position-fixed top-0 end-0 p-3"
+      style="z-index: 1080"
+    >
+      {% for category, message in messages %}
+      <div
+        class="toast show align-items-center text-white bg-{{ 'danger' if category in ['error', 'danger'] else category }} border-0 shadow"
+        role="alert"
+      >
+        <div class="d-flex">
+          <div class="toast-body">{{ message }}</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+
+    <!-- Main Content Container -->
+    <main class="main-content container py-4">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-3 mt-auto">
+      <div class="container text-center text-muted small">
+        &copy; 2026 SkillPro LMS. Built with Flask & Bootstrap.
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>
