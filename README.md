@@ -1,0 +1,72 @@
+# 🎓 SkillPro — Modern Learning Management System (LMS)
+
+SkillPro is a lightweight, full-featured, modular Learning Management System built with Python (Flask), SQLAlchemy, and Bootstrap 5. It features role-based access control, dynamic course authoring, automated quiz grading, student leaderboards, and printable course completion certificates.
+
+---
+
+## 🚀 Features
+
+- **Role-Based Portals:** Custom experiences tailored for **Students** and **Instructors**.
+- **Interactive Course Catalog:** Full-text course search, category filtering, and progress tracking.
+- **Curriculum Builder:** Create structured learning paths with Courses, Modules, and Lessons.
+- **Quiz Engine:** Automated evaluation, real-time feedback, and highest-score attempt mapping.
+- **Verifiable Certificates:** Auto-generated certificates with unique verification codes upon 100% course completion.
+- **Leaderboard:** Student ranking powered by total completed lessons.
+- **AI Doubt Solver:** Embedded assistant within the lesson player for contextual learning support.
+
+---
+
+## 🛠️ Project Structure
+
+```text
+skillpro/
+├── app.py                     # Application factory and route entry points
+├── config.py                  # Environment and database configuration
+├── extensions.py              # Flask extension initializations (DB, LoginManager)
+├── models/                    # SQLAlchemy database models (User, Course, Progress)
+├── routes/                    # Modular Blueprint routes
+├── services/                  # Business logic (CourseService, CertificateService)
+├── static/                    # Custom CSS, JS, and React components
+├── templates/                 # Jinja2 HTML templates & custom error pages
+├── .env.example               # Environment variable blueprint
+├── .gitignore                 # Git tracking exclusions
+└── seed.py                    # Database seeding script
+
+⚡ Quick Start
+1. Prerequisites
+Python 3.10 or higher
+Git
+
+2. Installation
+Clone the repository and set up a virtual environment:
+git clone [https://github.com/luthfan-tech/skillpro.git](https://github.com/luthfan-tech/skillpro.git)
+cd skillpro
+
+# Create and activate virtual environment
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+# Install required dependencies
+pip install flask flask-sqlalchemy flask-login werkzeug
+
+3. Environment Configuration
+Copy .env.example to create your local .env file:
+cp .env.example .env
+
+Define your local configuration parameters inside .env:
+SECRET_KEY=your-super-secret-key
+FLASK_APP=app.py
+FLASK_ENV=development
+SQLALCHEMY_DATABASE_URI=sqlite:///skillpro.db
+
+4. Database Setup & Seeding
+Initialize the SQLite database and seed initial test accounts and sample courses:
+
+1.Start the Flask app:
+python app.py
+2.Open your browser and navigate to:
+[http://127.0.0.1:5000/setup-db](http://127.0.0.1:5000/setup-db)
+
+🔐 Default Demo CredentialsRoleEmailPasswordAdmin / Instructoradmin@skillpro.comadmin123Studentstudent@skillpro.comstudent123
