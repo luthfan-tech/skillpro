@@ -1,25 +1,20 @@
 # 🎓 SkillPro — Modern Learning Management System (LMS)
 
-SkillPro is a lightweight, full-featured, modular Learning Management System built with Python (Flask), SQLAlchemy, and Bootstrap 5. It features role-based access control, dynamic course authoring, automated quiz grading, student leaderboards, and printable course completion certificates.
+SkillPro is a lightweight, modular Learning Management System built with **Python (Flask)**, **SQLAlchemy**, and **Bootstrap 5**. It includes role-based access control, dynamic course authoring, automated quiz grading, leaderboards, and printable completion certificates.
+
+> Built with AI assistance, then reviewed, customized, and structured by me to ensure clean architecture, maintainability, and a polished user experience.
 
 ---
-"*Built with AI assistance and heavily reviewed, customized, and structured by me to ensure clean architecture, maintainability, and a polished user experience.*"
-
-
-<img width="2048" height="1137" alt="image" src="https://github.com/user-attachments/assets/7542b7de-f000-42ee-a352-eadfcbb1fbe6" /> <img width="2048" height="1248" alt="image" src="https://github.com/user-attachments/assets/c6c237d2-7bd8-410b-a8e8-9a63c0e5e9d6" /> <img width="1546" height="2048" alt="image" src="https://github.com/user-attachments/assets/772c30f3-de81-4031-9b37-c7a3c6fec1b8" />
-
-
-
 
 ## 🚀 Features
 
-- **Role-Based Portals:** Custom experiences tailored for **Students** and **Instructors**.
-- **Interactive Course Catalog:** Full-text course search, category filtering, and progress tracking.
-- **Curriculum Builder:** Create structured learning paths with Courses, Modules, and Lessons.
-- **Quiz Engine:** Automated evaluation, real-time feedback, and highest-score attempt mapping.
-- **Verifiable Certificates:** Auto-generated certificates with unique verification codes upon 100% course completion.
-- **Leaderboard:** Student ranking powered by total completed lessons.
-- **AI Doubt Solver:** Embedded assistant within the lesson player for contextual learning support.
+- **Role-Based Portals** — Separate, tailored experiences for **students** and **instructors**.
+- **Course Catalog** — Full-text search, category filtering, and progress tracking.
+- **Curriculum Builder** — Structured learning paths with courses, modules, and lessons.
+- **Quiz Engine** — Automated evaluation with real-time feedback and best-attempt mapping.
+- **Verifiable Certificates** — Auto-generated certificates with unique verification codes after 100% completion.
+- **Leaderboard** — Student ranking based on total completed lessons.
+- **AI Doubt Solver** — Embedded assistant inside the lesson player for contextual help.
 
 ---
 
@@ -27,53 +22,82 @@ SkillPro is a lightweight, full-featured, modular Learning Management System bui
 
 ```text
 skillpro/
-├── app.py                     # Application factory and route entry points
-├── config.py                  # Environment and database configuration
-├── extensions.py              # Flask extension initializations (DB, LoginManager)
-├── models/                    # SQLAlchemy database models (User, Course, Progress)
-├── routes/                    # Modular Blueprint routes
-├── services/                  # Business logic (CourseService, CertificateService)
-├── static/                    # Custom CSS, JS, and React components
-├── templates/                 # Jinja2 HTML templates & custom error pages
-├── .env.example               # Environment variable blueprint
-├── .gitignore                 # Git tracking exclusions
-└── seed.py                    # Database seeding script
+├── app.py            # Application factory and route entry points
+├── config.py         # Environment and database configuration
+├── extensions.py     # Flask extension setup (DB, LoginManager)
+├── models/           # SQLAlchemy models (User, Course, Progress, etc.)
+├── routes/           # Modular Blueprint routes
+├── services/         # Business logic (CourseService, CertificateService)
+├── static/           # Custom CSS, JS, and React components
+├── templates/        # Jinja2 templates and error pages
+├── .env.example      # Example environment variables
+├── .gitignore        # Git ignore rules
+└── seed.py           # Database seeding script
+```
 
-⚡ Quick Start
-1. Prerequisites
-Python 3.10 or higher
-Git
+---
 
-2. Installation
-Clone the repository and set up a virtual environment:
-git clone [https://github.com/luthfan-tech/skillpro.git](https://github.com/luthfan-tech/skillpro.git)
+## ⚡ Quick Start
+
+### 1. Prerequisites
+
+- Python **3.10+**
+- Git
+
+### 2. Installation
+
+```bash
+git clone https://github.com/luthfan-tech/skillpro.git
 cd skillpro
 
 # Create and activate virtual environment
 python -m venv venv
-# On Windows:
+# Windows
 venv\Scripts\activate
-# On macOS/Linux:
+# macOS / Linux
 source venv/bin/activate
-# Install required dependencies
+
+# Install dependencies
 pip install flask flask-sqlalchemy flask-login werkzeug
+```
 
-3. Environment Configuration
-Copy .env.example to create your local .env file:
+### 3. Environment Configuration
+
+```bash
 cp .env.example .env
+```
 
-Define your local configuration parameters inside .env:
+Update `.env` with your local settings:
+
+```env
 SECRET_KEY=your-super-secret-key
 FLASK_APP=app.py
 FLASK_ENV=development
 SQLALCHEMY_DATABASE_URI=sqlite:///skillpro.db
+```
 
-4. Database Setup & Seeding
-Initialize the SQLite database and seed initial test accounts and sample courses:
+### 4. Database Setup & Seeding
 
-1.Start the Flask app:
+Start the app and run the setup route:
+
+```bash
 python app.py
-2.Open your browser and navigate to:
-[http://127.0.0.1:5000/setup-db](http://127.0.0.1:5000/setup-db)
+```
 
-🔐 Default Demo CredentialsRoleEmailPasswordAdmin / Instructoradmin@skillpro.comadmin123Studentstudent@skillpro.comstudent123
+Then open:
+
+```text
+http://127.0.0.1:5000/setup-db
+```
+
+This initializes the SQLite database and seeds demo data.
+
+---
+
+## 🔐 Demo Credentials
+
+| Role        | Email                 | Password     |
+|------------|-----------------------|--------------|
+| Admin      | admin@skillpro.com    | admin123     |
+| Instructor | admin@skillpro.com    | admin123     |
+| Student    | student@skillpro.com  | student123   |
